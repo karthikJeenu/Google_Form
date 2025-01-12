@@ -40,7 +40,7 @@ public class TestCases {
                 long epochTime = Instant.now().getEpochSecond();
                 Thread.sleep(2000);
                 WebElement reason = driver.findElement(By.xpath("//textarea[contains(@class,'tL9Q4c')]"));
-                String text = "I want to be the bestg QA Engineer! " + epochTime;
+                String text = "I want to be the best QA Engineer! " + epochTime;
                 Assert.assertTrue(reason.isDisplayed(), "Reason textarea is not displayed.");
                 wrapper.Entertext(reason, text);
 
