@@ -65,6 +65,7 @@ public class TestCases {
                 // Setting date for 7 days back
                 String currentDate = LocalDate.now().minusDays(7).format(DateTimeFormatter.ofPattern("MMddyyyy"));
                 WebElement date = driver.findElement(By.xpath("//input[@type='date']"));
+                System.out.println(currentDate);
                 wrapper.Entertext(date, currentDate);
 
                 Thread.sleep(2000);
@@ -85,6 +86,7 @@ public class TestCases {
                 WebElement Sucess = driver.findElement(By.className(
                                 "vHW8K"));
                 wrapper.Success_Text(Sucess);
+                System.out.println("Successfully completed");
 
         }
 

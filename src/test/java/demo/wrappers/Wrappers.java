@@ -21,6 +21,7 @@ public class Wrappers {
         String Expected_Msg="Thanks for your response, Automation Wizard!";
          if (element.isDisplayed()) {
         String Success_msg=element.getText();
+        System.out.println(Success_msg);
         Assert.assertEquals(Success_msg, Expected_Msg);
          }
      }
