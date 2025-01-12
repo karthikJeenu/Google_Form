@@ -1,19 +1,40 @@
 package demo.wrappers;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
+import java.time.Duration;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 
 public class Wrappers {
-    /*
-     * Write your selenium wrappers here
-     */
+    public WebDriver driver;
+    public WebDriverWait wait;
+
+    public Wrappers(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+
+    // Wrapper for Success message 
+     public void Success_Text(WebElement element) { 
+         if (element.isDisplayed()) {
+        String Success_msg=element.getText();        
+        System.out.println(Success_msg);
+         }
+     }
+
+
+    // Wrapper for sending keys to an input field
+    public void Entertext(WebElement element, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    // Wrapper for waiting for an element to be clickable
+    public void waitandclick(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+    }
 }
+
