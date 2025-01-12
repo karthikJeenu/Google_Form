@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -24,18 +25,22 @@ public class TestCases {
         Wrappers wrapper;
 
         @Test
-        public void Testcase01() throws InterruptedException {
+        public void testCase01() throws InterruptedException {
                 // navigate to google form link
                 driver.get(
                                 "https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
-                // Entering name and why are you practicing
+               
+          Assert.assertEquals(driver.getTitle(), "QA Assignment - Automate Google Forms", "Page title did not match!");
+               // Entering name and why are you practicing
                 WebElement name = driver.findElement(
                                 By.xpath("//div[contains(@class,'k3kHxc')]//div//div//div//input"));
+                 Assert.assertTrue(name.isDisplayed(), "Name input field is not displayed.");
                 wrapper.Entertext(name, "Crio Learner");
 
                 long epochTime = Instant.now().getEpochSecond();
                 WebElement reason = driver.findElement(By.xpath("//textarea[contains(@class,'tL9Q4c')]"));
-                String text = "I want to be the best QA Engineer! " + epochTime;
+                String text = "I want to be the bestg QA Engineer! " + epochTime;
+                Assert.assertTrue(reason.isDisplayed(), "Reason textarea is not displayed.");
                 wrapper.Entertext(reason, text);
 
                 // selecting practice,skills,title
@@ -59,7 +64,6 @@ public class TestCases {
 
                 // Setting date for 7 days back
                 String currentDate = LocalDate.now().minusDays(7).format(DateTimeFormatter.ofPattern("MMddyyyy"));
-                System.out.println(currentDate);
                 WebElement date = driver.findElement(By.xpath("//input[@type='date']"));
                 wrapper.Entertext(date, currentDate);
 
@@ -75,6 +79,7 @@ public class TestCases {
 
                 WebElement Submit_btn = driver.findElement(By.xpath(
                                 "//div[contains(@class,'VkkpIf')]"));
+                Assert.assertTrue(Submit_btn.isDisplayed(), "Submit button is not displayed.");
                 wrapper.waitandclick(Submit_btn);
                 Thread.sleep(3000);
                 WebElement Sucess = driver.findElement(By.className(

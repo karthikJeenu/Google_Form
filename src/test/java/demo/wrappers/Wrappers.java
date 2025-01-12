@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class Wrappers {
     public WebDriver driver;
@@ -17,9 +18,10 @@ public class Wrappers {
 
     // Wrapper for Success message 
      public void Success_Text(WebElement element) { 
+        String Expected_Msg="Thanks for your response, Automation Wizard!";
          if (element.isDisplayed()) {
-        String Success_msg=element.getText();        
-        System.out.println(Success_msg);
+        String Success_msg=element.getText();
+        Assert.assertEquals(Success_msg, Expected_Msg);
          }
      }
 
